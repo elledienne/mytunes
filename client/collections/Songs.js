@@ -2,6 +2,7 @@
 var Songs = Backbone.Collection.extend({
   model: SongModel,
 
+<<<<<<< HEAD
   initialize:function(){
 
     //do init stuff.
