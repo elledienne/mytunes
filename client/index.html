@@ -3,8 +3,6 @@
   <body>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
-     below them until after the scripts load-->
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
@@ -29,14 +27,10 @@
             console.log(arguments);
         }
       $(function() {
-        // set up model objects
         var MyTunes = new AppModel();
         // var app = new AppModel({library: library});
 
-        // build a view for the top level of the whole app
         var appView = new AppView({model: MyTunes});
-
-        // put the view onto the screen
         $('body').append(appView.render());
       });
     </script>
