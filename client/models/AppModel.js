@@ -1,7 +1,25 @@
 var AppModel = Backbone.Model.extend({
-  initialize: function(params) {
+  url:"http://54.183.147.110:1337",
+  
 
-    this.set("library", new Songs(songData))
+
+  initialize: function(params) {
+    this.fetch({
+      success: function (message) {
+        console.log("NOERROR: ",message.toJSON()[0].results);
+        // messagesView = new MessageColView({ collection: message.toJSON()[0].results })
+        // messagesList = message.toJSON();
+      },
+      error:function(e){
+        console.log("ERROR",e)
+      }
+    })
+
+
+
+
+
+    this.set("library", new Songs())
 
     this.set('currentSong', new SongModel());
 
