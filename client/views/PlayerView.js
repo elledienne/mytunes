@@ -3,17 +3,18 @@ var PlayerView = Backbone.View.extend({
   events:{
 
   },
-
-  // HTML5 (native) audio tag is being used
-  // see: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video
-  // el: '<audio id="the_player" controls autoplay />',
   el: '<audio id="the_player" controls autoplay />',
 
   initialize: function() {
-    var theQueue = MyTunes.get("songQueue");
-    this.$el.bind('ended', function(){
-      theQueue.remove(theQueue.at(0));
-    });
+    var self = this;
+    //var theQueue = MyTunes.get("songQueue"); //leaving this for my mind.
+    //this.$el.bind('ended', function(){
+    //  theQueue.remove(theQueue.at(0));
+    //});
+    this.$el.bind('ended', $.proxy(function(){
+      this.model.trigger('ended');
+    }, this));
+
   },
 
   setSong: function(song) {

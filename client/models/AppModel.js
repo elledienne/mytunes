@@ -7,6 +7,10 @@ var AppModel = Backbone.Model.extend({
 
     this.set('songQueue', new SongQueue());
 
+    this.get("songQueue").on("ended",function(){
+      this.get("songQueue").remove(this.get("songQueue").at(0));
+    },this);
+
     this.get("songQueue").on("dq",function(song){
         this.get("songQueue").remove(song);
     }, this);
