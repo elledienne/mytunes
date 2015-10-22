@@ -23,15 +23,26 @@
     <script src="views/AppView.js"></script>
 
     <script>
-        window.cl = function(){
-            console.log(arguments);
-        }
       $(function() {
-        var MyTunes = new AppModel();
-        // var app = new AppModel({library: library});
+        $.ajax({
+          url: 'http://54.183.147.110:1337',
+        })
+        .done(function(data){
+            console.log('success: ', data);
+            var MyTunes = new AppModel({library: new Songs(data)});
 
-        var appView = new AppView({model: MyTunes});
-        $('body').append(appView.render());
+            var appView = new AppView({model: MyTunes});
+            $('body').append(appView.render());
+        })
+        .fail(function(e){
+            console.log("Error: ",e)
+        });
+
+        window.cl = function(){
+          console.log(arguments);
+        }
+        // var MyTunes = new AppModel();
+
       });
     </script>
   </body>
